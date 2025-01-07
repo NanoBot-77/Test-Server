@@ -26,5 +26,13 @@ def About():
 
 @app.route('/api/TestJson')
 def TestJson():
-    R = random.randint(10, 200)
-    return jsonify({'R_Data':R})
+    try:
+        R = random.randint(10, 200)
+        print(f"\n{R}\n")
+        return jsonify({'R_Data':R}), 200
+    except Exception as E:
+        return jsonify({'Error':E}), 400
+
+
+if __name__ == "__main__":
+    app.run(port=7089, host="0.0.0.0")
